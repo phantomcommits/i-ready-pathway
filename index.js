@@ -17,12 +17,17 @@ export default async function handler(req, res) {
 
   if (fs.existsSync(filePath) && fs.lstatSync(filePath).isFile()) {
     const content = fs.readFileSync(filePath);
-    // Auto-detect the file type (html, css, js)
     const ext = path.extname(filePath);
-    const types = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css' };
+    const types = { 
+      '.html': 'text/html', 
+      '.js': 'text/javascript', 
+      '.css': 'text/css',
+      '.png': 'image/png',
+      '.jpg': 'image/jpeg'
+    };
     res.setHeader('Content-Type', types[ext] || 'text/plain');
     res.status(200).send(content);
   } else {
-    res.status(404).send('File not found in /main folder');
+    res.status(404).send('File not found in /main folder. Check your file path!');
   }
 }

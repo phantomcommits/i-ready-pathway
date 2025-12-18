@@ -1,11 +1,20 @@
-(async() => {
-    await import('./index.mjs');
-  })();
-module.exports = app;
-// This replaces the old app.listen() part
-if (process.env.NODE_ENV !== 'production') {
-    const PORT = process.env.PORT || 3000;
-    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+const app = require('express')();
+
+// This forces the app to look at your main logic file
+try {
+    const mainApp = require('./index.mjs');
+    if (mainApp && mainApp.default) {
+        app.use(mainApp.default);
+    } else {
+        app.use(mainApp);
+    }
+} catch (e) {
+    // If it's a proxy, it might just need to be imported
+    import('./index.mjs');
 }
 
-module.exports = app;
+// Vercel Magic
+module.exports = (req, res) => {
+    // This handles the request even if the mjs hasn't loaded yet
+    app(req, res);
+};

@@ -8,6 +8,6 @@
   "dependencies": {
     "express": "^4.18.2",
     "http-proxy": "^1.18.1",
-    "corrosion": "latest"
+    "path": "^0.12.7"
   }
 }

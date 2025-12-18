@@ -1,20 +1,11 @@
-const app = require('express')();
+import createServer from '@tomphttp/bare-server-node';
+const bare = createServer('/bare/');
 
-// This forces the app to look at your main logic file
-try {
-    const mainApp = require('./index.mjs');
-    if (mainApp && mainApp.default) {
-        app.use(mainApp.default);
-    } else {
-        app.use(mainApp);
-    }
-} catch (e) {
-    // If it's a proxy, it might just need to be imported
-    import('./index.mjs');
+export default async function handler(req, res) {
+  if (bare.shouldRoute(req)) {
+    bare.routeRequest(req, res);
+  } else {
+    // This tells Vercel to just serve the files in your /main folder
+    res.status(404).send('Not Found');
+  }
 }
-
-// Vercel Magic
-module.exports = (req, res) => {
-    // This handles the request even if the mjs hasn't loaded yet
-    app(req, res);
-};

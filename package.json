@@ -1,13 +1,7 @@
 {
-  "name": "i-ready-pathway",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js"
-  },
+  "type": "module",
   "dependencies": {
-    "express": "^4.18.2",
-    "http-proxy": "^1.18.1",
-    "path": "^0.12.7"
+    "@tomphttp/bare-server-node": "^2.0.1",
+    "node-static": "^0.7.11"
   }
 }

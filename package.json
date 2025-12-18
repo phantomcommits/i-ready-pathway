@@ -2,6 +2,6 @@
   "type": "module",
   "dependencies": {
     "@tomphttp/bare-server-node": "^2.0.1",
-    "node-static": "^0.7.11"
+    "express": "^4.18.2"
   }
 }

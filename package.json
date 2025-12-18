@@ -6,9 +6,10 @@
   "directories": {
     "lib": "lib"
   },
-  "scripts": {
-    "start": "node index.js"
-  },
+ "scripts": {
+  "start": "node index.js",
+  "dev": "node index.js"
+}
   "repository": {
     "type": "git",
     "url": "git://github.com/EpicProgrammingPerson/Utopia-Beta.git"
